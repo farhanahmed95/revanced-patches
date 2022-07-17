@@ -14,7 +14,6 @@ import app.revanced.patches.youtube.layout.branding.header.annotations.PremiumHe
 import app.revanced.patches.youtube.misc.manifest.patch.FixLocaleConfigErrorPatch
 import java.nio.file.Files
 import java.nio.file.StandardCopyOption
-import kotlin.io.path.exists
 
 @Patch
 @Dependencies([FixLocaleConfigErrorPatch::class])
@@ -33,14 +32,14 @@ class PremiumHeadingPatch : ResourcePatch() {
         arrayOf("xxxhdpi", "xxhdpi", "xhdpi", "hdpi", "mdpi").forEach { size ->
             val headingDirectory = resDirectory.resolve("drawable-$size")
             modes.forEach { mode ->
-                val fromPath = headingDirectory.resolve("${original}_$mode.png").toPath()
-                val toPath = headingDirectory.resolve("${replacement}_$mode.png").toPath()
+                val fromPath = headingDirectory.resolve("${original}_$mode.png")
+                val toPath = headingDirectory.resolve("${replacement}_$mode.png")
 
                 if (!fromPath.exists())
                     return PatchResultError("The file $fromPath does not exist in the resources. Therefore, this patch can not succeed.")
                 Files.copy(
-                    fromPath,
-                    toPath,
+                    fromPath.toPath(),
+                    toPath.toPath(),
                     StandardCopyOption.REPLACE_EXISTING
                 )
             }

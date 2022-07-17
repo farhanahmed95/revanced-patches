@@ -4,26 +4,24 @@ plugins {
 
 group = "app.revanced"
 
-val githubUsername: String = project.findProperty("gpr.user") as? String ?: System.getenv("GITHUB_ACTOR")
-val githubPassword: String = project.findProperty("gpr.key") as? String ?: System.getenv("GITHUB_TOKEN")
+//val githubUsername: String = project.findProperty("gpr.user") as? String ?: System.getenv("GITHUB_ACTOR")
+//val githubPassword: String = project.findProperty("gpr.key") as? String ?: System.getenv("GITHUB_TOKEN")
 
 repositories {
     mavenCentral()
     mavenLocal()
-    maven {
-        url = uri("https://maven.pkg.github.com/revanced/revanced-patcher")
-        credentials {
-            username = githubUsername
-            password = githubPassword
-        }
-    }
+//    maven {
+//        url = uri("https://maven.pkg.github.com/revanced/revanced-patcher")
+//        credentials {
+//            username = githubUsername
+//            password = githubPassword
+//        }
+//    }
 }
 
 dependencies {
     implementation(kotlin("stdlib"))
-
-    implementation("app.revanced:revanced-patcher:2.4.0")
-    implementation("app.revanced:multidexlib2:2.5.2.r2")
+    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 }
 
 tasks {
