@@ -18,7 +18,7 @@ import java.nio.file.StandardCopyOption
 @Patch
 @Dependencies([FixLocaleConfigErrorPatch::class])
 @Name("premium-heading")
-@Description("Shows premium branding on the YouTube home screen.")
+@Description("Shows premium branding on the home screen.")
 @PremiumHeadingCompatibility
 @Version("0.0.1")
 class PremiumHeadingPatch : ResourcePatch() {
